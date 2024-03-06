@@ -13,3 +13,7 @@ pip install -r requirements.txt
 ```bash
 flask --app ebooks run --debug
 ```
+
+## How to use
+
+Copy your PDF ebooks to folder assets
