@@ -1,33 +1,20 @@
 import os
-import PyPDF2
-import fitz
+import fitz   # PyMuPDF
 
 
 def read_pdf_metadata(pdf_path):
-    with open(pdf_path, 'rb') as file:
-        pdf_reader = PyPDF2.PdfReader(file)
-
-        metadata = pdf_reader.metadata
-
-        # num_pages = len(pdf_reader.pages)
-        # text = ""
-        # for page_num in range(num_pages):
-        #     page = pdf_reader.pages[page_num]
-        #     text += page.extract_text()
-
-    title = metadata.get('/Title', '')
-    author = metadata.get('/Author', '')
-    creator = metadata.get('/Creator', '')
-    producer = metadata.get('/Producer', '')
-
-    return {
-        "title": title,
-        "author": author,
-        "creator": creator,
-        # "content": text.replace("\n", "<br>")
-    }
-
+    # Open the PDF file
+    pdf_document = fitz.open(pdf_path)
     
+    # Get metadata
+    metadata = pdf_document.metadata
+    
+    # Close the PDF document
+    pdf_document.close()
+    
+    return metadata
+
+
 def read_cover(pdf_path):
     filename = os.path.basename(pdf_path)
 
