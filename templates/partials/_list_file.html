@@ -1,0 +1,20 @@
+<ul class="list-group mt-4" style="font-size:120%">   
+  {% for file in data.files %}
+  <li class="list-group-item">
+    <div class="row row-cols-lg-auto g-3 align-items-center">
+      <div class="col-12">
+        {% if file.basename.endswith(".pdf") %}
+        <i class="bi bi-filetype-pdf"></i>
+        {% else %}
+        <i class="bi bi-file-earmark-text"></i>
+        {% endif  %}
+        {{file.basename}}
+      </div>
+      <div class="col-12">
+        {{file.size}}
+      </div>
+    </div>
+    
+  </li>
+  {% endfor %}
+</ul>
