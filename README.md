@@ -16,4 +16,6 @@ flask --app ebooks run --debug
 
 ## How to use
 
-Copy your PDF ebooks to folder assets
+Copy your PDF ebooks to folder **assets**.
+
+The PDF cover image will generate to folder **static/images**
