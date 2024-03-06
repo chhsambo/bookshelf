@@ -1,6 +1,5 @@
 import os
 from flask import Flask, render_template
-from ebooklib import epub
 
 from utils import get_folders, get_files
 from helpers import pdf 
@@ -25,7 +24,6 @@ def home():
     return render_template("index.html", data=data)
 
 
-# @app.get("/view/<file_name>.epub")
 @app.get("/view/<file_name>")
 def view(file_name):
     data = {}
