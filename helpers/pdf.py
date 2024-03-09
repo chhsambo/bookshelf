@@ -8,11 +8,22 @@ def read_pdf_metadata(pdf_path):
     
     # Get metadata
     metadata = pdf_document.metadata
+
+    # Initialize an empty string to store the text content
+    content = []
+    
+    # Iterate through each page in the PDF
+    for page_number in range(pdf_document.page_count):
+        # Get the page
+        page = pdf_document.load_page(page_number)
+        
+        # Extract text from the page
+        content.append(page.get_text())
     
     # Close the PDF document
     pdf_document.close()
     
-    return metadata
+    return metadata, content
 
 
 def read_cover(pdf_path):
