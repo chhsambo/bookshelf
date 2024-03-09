@@ -1,0 +1,46 @@
+{% extends "_base.html" %}
+
+{% block content %}
+  <h2>{{title}}</h2>
+
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 fs-5">
+    {% for folder in folders %}
+    <div class="col">
+        <a 
+            {% if path %}href="/browse/{{path}}/{{folder}}"
+            {% else %}href="/browse/{{folder}}"
+            {% endif %} class="card my-2 text-decoration-none">
+            <div class="card-body">
+                <i class="bi bi-folder"></i>
+                {{folder}}
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="py-md-5">
+    <div class="list-group">
+      {% for file in files %}
+      <a 
+        {% if path %}href="/view/{{path}}/{{file.basename}}" 
+        {% else %}href="/view/{{file.basename}}" 
+        {% endif %} 
+        class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+        {% if file.basename.endswith(".pdf") %}
+        {% include "icons/icon_pdf.html" %}
+        {% else %}
+        {% include "icons/icon_file.html" %}
+        {% endif  %}
+        <div class="d-flex gap-2 w-100 justify-content-between">
+          <div>
+            <h6 class="mb-0">{{file.basename}}</h6>
+            <p class="mb-0 opacity-75">{{file.size_mb}}</p>
+          </div>
+          <small class="opacity-50 text-nowrap">{{file.last_access}}</small>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock content %}
