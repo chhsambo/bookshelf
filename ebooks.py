@@ -42,14 +42,17 @@ def view(file_name: str):
 
     image_filename = pdf.read_cover(pdf_path)
 
+    book_title = os.path.basename(file_name)
+
     # Use filename as title
     if not book["title"]:
-        book["title"] = file_name.split(".")[0].replace("-", " ").title()
+        book["title"] = book_title.split(".")[0].replace("-", " ").title()
 
     return render_template(
         "view.html",
         book=book,
         content=book_content[:20],
+        total_page = len(book_content),
         cover_filename=f"images/{image_filename}",
     )
 
