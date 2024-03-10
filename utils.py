@@ -24,7 +24,8 @@ def get_files(parent_dir):
 
     for item in items:
         item_path = os.path.join(parent_dir, item)
-        if os.path.isfile(item_path):
+
+        if os.path.isfile(item_path) and item.endswith(".pdf"):
             size = os.path.getsize(item_path)
             last_access = os.path.getatime(item_path)
 
@@ -36,7 +37,6 @@ def get_files(parent_dir):
                 "size": size,
                 "size_mb": "{:.2f} MB".format(size / 1024 / 1024),
             }
-            # yield item_path
 
 
 # def walk_dir(parent_dir):
